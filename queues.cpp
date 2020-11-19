@@ -1,11 +1,11 @@
 #include <iostream>
-#include <bits/stdc++.h>
 //first in first out
 //  ->stacks are first in last out
 #define MAX 10
 using namespace std;
 struct Queue {
     int front, back;
+    int size;
     int queue[MAX];
     Queue() {
        front = back = -1; 
@@ -23,7 +23,15 @@ struct Queue {
         }
         return false;
     }
-}
+    void enqueue(int value) {
+        if (this->isFull()) {
+            return;
+        }
+        this->back = (this->back + 1) % MAX;
+        this->queue[this->back] = value;
+        this->size += 1;
+    }
+};
 
 int main() {
 
