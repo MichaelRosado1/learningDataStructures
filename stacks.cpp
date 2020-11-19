@@ -1,3 +1,4 @@
+#include <string>
 #include <iostream> 
     /*
         Stacks are a last in first out structure meaning that the
@@ -15,7 +16,7 @@
 struct Stack {
     //the value of the most recent added value
 int top_of_stack;
-int arr[1000]; 
+char arr[1000]; 
 Stack() {
         top_of_stack = -1;
    } 
@@ -29,8 +30,8 @@ Stack() {
         return false;
    } 
     
-    void push(int value) {
-        
+    void push(char value) {
+      
         //if the top of the stack is greater than the space given 
         if (top_of_stack > 1000) {
             std::cout<<"Stack Overflow";
@@ -58,19 +59,20 @@ Stack() {
             return arr[top_of_stack--];
     }
 };
-
+struct Stack *stack;
+void addCharsToStack(std::string input) {
+   for (int i = 0; i < sizeof(input) - 1; i++) {
+      stack->push(input[i]);
+   } 
+   std::cout<<"top of stack is equal to: "<<stack->top_value();
+}
+std::string getUserInput() {
+    std::cout<<"enter in string: ";
+    std::string toReturn;
+    std::cin>>toReturn;
+    return toReturn;
+}
 
 int main() {
-    struct Stack stack = Stack();
 
-    stack.push(10);
-    stack.push(15);
-    stack.push(20);
-    stack.push(25);
-    stack.push(30);
-
-    
-    std::cout<<stack.top_value()<<"\n";
-    stack.pop();
-    std::cout<<stack.top_value()<<"\n";
-}
+} 
