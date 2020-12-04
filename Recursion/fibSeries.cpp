@@ -8,8 +8,11 @@ int findNthTerm(int n) {
 	//we want to add the previous and second to previous terms in the sequence in order to get
 	//the next term
 	return findNthTerm(n - 1) + findNthTerm(n - 2);
+	//not optimzed for large numbers
 }
 int main() {
 	int n = 10;
 	std::cout<<findNthTerm(n);
+	//runs very slow
+	std::cout<<findNthTerm(50);
 }
