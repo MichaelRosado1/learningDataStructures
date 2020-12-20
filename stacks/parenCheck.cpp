@@ -1,3 +1,4 @@
+#include <vector>
 #include <iostream> 
 #include <string>
 
@@ -42,9 +43,17 @@ class Stack {
 				return this->items[stackIndex];		
 			}
 		}
-}
 
-bool checkIfStringIsEqual(std::string paren) {
+		bool isNOTEmptyOrFull() {
+			if (this->stackIndex == -1) {
+				return false;
+			} else {
+				return true;
+			}
+		}
+};
+
+bool checkIfStringIsEqual(std::string str) {
 	/*
 		1) convert the string to a char vector
 		2) for each letter in the vector, check if it is an ) or (
@@ -57,19 +66,62 @@ bool checkIfStringIsEqual(std::string paren) {
 		index 0 and 1 are pushed to the stack, then both are popped off when the char is )
 		since the stack would be empty and the char vector is empty, the parenthesis are balanced
    */
+	//convert the string to a char vector 
+	std::vector<char> parens(str.begin(), str.end()); 
+	Stack *stack = new Stack();	
 
+	if (parens.size() == 0) {
+		return true;
+	}
+	
+	//loop through entire char vector
+	for (int i = 0; i < (int) parens.size();i++) {
+		//if current element is a (
+		if (parens[i] == '(') {
+			//push  the  char to the stack
+			stack->push(parens[i]);
+			continue;
+		}
+		//if current element is a )
+		if (parens[i] == ')') {
+			if (stack->isNOTEmptyOrFull()) {
+				//pop the stack
+				stack->pop();
+				continue;
+			} 
 
+			return false;
+		}
+	}
 
+	//if the stack still has parens in it return false
+	if (stack->isNOTEmptyOrFull()) {
+		return false;
+	} else {
+		return true;
+	}
+}
+
+void outputResult(bool result) {
+	if (result) {
+		std::cout<<"The inputted string is balanced correctly\n";
+	} else {
+		std::cout<<"The inputted string is not balanced correctly\n";
+	}
 }
 
 int main() {
-	std::string stringToParse = "(())";
-	
-	bool isEqual = checkIfStringIsEqual(stringToParse);
-	
-	if (isEqual) {
-		std::cout<<"The inputted string is balanced correctly";
-	} else {
-		std::cout<<"The inputted string is not balanced correctly";
+
+	std::vector<std::string> tests;
+	tests.push_back("(())");
+	tests.push_back("((()");
+	tests.push_back("()");
+	tests.push_back("");
+	tests.push_back(")(");
+	tests.push_back("())()(");
+
+	for (int i = 0; i < (int) tests.size(); i++) {
+		outputResult(checkIfStringIsEqual(tests[i]));
 	}
+
 }
