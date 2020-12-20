@@ -45,7 +45,7 @@ class Stack {
 		}
 
 		bool isNOTEmptyOrFull() {
-			if (this->stackIndex == -1) {
+			if (this->stackIndex == -1 || this->stackIndex == defaultSizeOfStack - 1) {
 				return false;
 			} else {
 				return true;
@@ -119,6 +119,7 @@ int main() {
 	tests.push_back("");
 	tests.push_back(")(");
 	tests.push_back("())()(");
+	tests.push_back("(()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()())");
 
 	for (int i = 0; i < (int) tests.size(); i++) {
 		outputResult(checkIfStringIsEqual(tests[i]));
