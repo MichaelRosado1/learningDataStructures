@@ -1,0 +1,16 @@
+#include <iostream>
+
+//towers A,B,C
+//n is the number of disks
+void toh(int n, int A, int B, int C) {
+	if (n > 0) {
+		toh(n-1, A,C,B);
+		//prints the steps
+		printf("(%d,%d)\n",A,C);
+		toh(n-1,B,A,C);
+	}	
+}
+
+int main() {
+	toh(5,1,2,3);
+}
