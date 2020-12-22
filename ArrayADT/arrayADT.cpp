@@ -19,8 +19,6 @@ class Array {
 				A[index] = element;
 				index++;
 			}
-
-
 		}
 
 		void pop() {
@@ -28,21 +26,33 @@ class Array {
 			index--;
 		}
 
+
+
 		void printAllElemets() {
-			for (int i = 0; i <= (int)sizeof(this->A)/4; i++) {
+			for (int i = 0; i <= this->index - 1; i++) {
 				std::cout<<"element: "<<i<<" is equal to: "<<this->A[i]<<"\n";
 			}
 		}
 
 		void shiftNumsOver(int position) {
+			int *copy = new int[this->length + 1];
 			if (position > this->length - 1) {
 				std::cout<<"Not a valid position";
 			} else {
-				for (int i = position + 1; i < this->length; i++) {
-					int temp = this->A[i];
-					this->A[i] = -1;
-					this->A[i+1] = temp;
+				for (int i = 0; i < this->index - 1; i++) {
+					std::cout<<this->A[i]<<"\n";
+					if (i == position) {
+						copy[i] = -1;
+						copy[i + 1] = this->A[i];
+						continue;
+					}
+					if (i > position) {
+						copy[i + 1] = this->A[i];
+						continue;
+					}
+					copy[i] = this->A[i];
 				}
+				this->A = copy;
 			}
 		}
 		void copyArrayandIncreaseSize() {
@@ -56,15 +66,22 @@ class Array {
 			this->copyArrayandIncreaseSize();
 			this->shiftNumsOver(position);	
 			this->A[position] = element;
-
 		}
+
+
 };
 
 int main() {
-	Array *arr = new Array(10);
+	Array *arr = new Array(100);
 	arr->push(10);
 	arr->push(30);
 	arr->push(5);
-	arr->insert(2, 1000);
+	arr->push(49);
+	arr->push(500);
 	arr->printAllElemets();
+
 }
+
+
+
+
