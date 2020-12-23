@@ -68,6 +68,22 @@ class Array {
 			this->A[position] = element;
 		}
 
+		//deletes an element at a specific position	
+		void deleteElement(int position) {
+			int *copy = new int[this->index - 1];
+
+			for (int i = 0; i < this->index - 1; i++) {
+				if (i == position) {
+					continue;
+				} else {
+					copy[i] = this->A[i];
+				}
+
+			}
+			this->index--;
+			this->A = copy;
+		}	
+
 
 };
 
@@ -78,6 +94,8 @@ int main() {
 	arr->push(5);
 	arr->push(49);
 	arr->push(500);
+	arr->deleteElement(1);
+	arr->deleteElement(0);
 	arr->printAllElemets();
 
 }
