@@ -28,8 +28,12 @@ class Array {
 		int linearSearch(int element) {
 			for (int i = 0; i < this->length; i++) {
 				if (this->arrayptr[i] == element) {
-					swapElements(i, i - 1);
-					return i;
+					if (i == 0) {
+						return i;
+					} else {
+						swapElements(i, i - 1);
+						return i;
+					}
 				} 
 			}
 			return -1;
