@@ -28,7 +28,7 @@ class Array {
 		int linearSearch(int element) {
 			for (int i = 0; i < this->length; i++) {
 				if (this->arrayptr[i] == element) {
-					if (i == 0) {
+					if (i == 0 || i == this->index - 1) {
 						return i;
 					} else {
 						swapElements(i, i - 1);
@@ -61,7 +61,4 @@ int main() {
 	myarr->print();
 	myarr->linearSearch(6);
 	myarr->print();
-
-
-
 }
