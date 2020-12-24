@@ -84,6 +84,19 @@ class Array {
 			this->A = copy;
 		}	
 
+		void reverseArray() {
+			int start = 0, end = this->index - 1;
+
+			while (start < end) {
+				int temp = this->A[start];
+				this->A[start] = this->A[end];
+				this->A[end] = temp;
+				start++;
+				end--;
+			}
+
+		}
+
 
 };
 
@@ -94,8 +107,8 @@ int main() {
 	arr->push(5);
 	arr->push(49);
 	arr->push(500);
-	arr->deleteElement(1);
-	arr->deleteElement(0);
+	arr->printAllElemets();
+	arr->reverseArray();
 	arr->printAllElemets();
 
 }
