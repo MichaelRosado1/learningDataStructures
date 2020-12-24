@@ -97,6 +97,15 @@ class Array {
 
 		}
 
+		bool isSorted() {
+			for (int i = 1; i < this->index - 1; i++) {
+				if (this->A[i] < this->A[i-1]) {
+					return false;
+				}	
+			}
+			return true;
+		}
+
 
 };
 
@@ -104,12 +113,12 @@ int main() {
 	Array *arr = new Array(100);
 	arr->push(10);
 	arr->push(30);
-	arr->push(5);
-	arr->push(49);
+	arr->push(50);
+	arr->push(490);
 	arr->push(500);
-	arr->printAllElemets();
+	std::cout<<arr->isSorted()<<"\n";
 	arr->reverseArray();
-	arr->printAllElemets();
+	std::cout<<arr->isSorted()<<"\n";
 
 }
 
