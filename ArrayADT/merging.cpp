@@ -52,34 +52,33 @@ class Array {
 };
 
 int* mergeArrays(Array *arr1, Array *arr2) {
-	int i = 0;
-	int j = 0;
-	int k = 0;
-	int* toReturn = new int[arr1->getSize() + arr2->getSize()];
-
+	int arr1Size = arr1->getSize();
+	int arr2Size = arr2->getSize();
+	int* toReturn = new int[arr1Size + arr2Size];
+	int i,j,k; 
+	i = j = k = 0;
 	while (i < arr1->getSize() && j < arr2->getSize()) {
 		if (arr1->at(i) < arr2->at(j)) {
 			k++;
 			i++;
-			toReturn[k]= arr1->at(k);	
+			toReturn[k] = arr1->at(i);
 		} else {
 			k++;
 			j++;
-			toReturn[k] = arr2->at(j);	
+			toReturn[k] = arr2->at(j);
 		}
-
 	}
-	while (i < arr1->getSize()) {
+
+	for (; i < arr1Size; i++) {
 		k++;
-		i++;
 		toReturn[k] = arr1->at(i);
 	}
 
-	while (j < arr2->getSize()) {
+	for (; j < arr2Size; j++) {
 		k++;
-		j++;
-		toReturn[k] = arr2->at(j);
+		toReturn[k] = arr1->at(j);
 	}
+
 	return toReturn;
 }
 
