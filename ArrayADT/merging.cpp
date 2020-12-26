@@ -52,13 +52,40 @@ class Array {
 };
 
 int* mergeArrays(Array *arr1, Array *arr2) {
-	int size = arr1->getSize() + arr2->getSize();
-	int *toReturn = new int[size];
-	//TODO
-	return toReturn;	
+	int i = 0;
+	int j = 0;
+	int k = 0;
+	int* toReturn = new int[arr1->getSize() + arr2->getSize()];
+
+	while (i < arr1->getSize() && j < arr2->getSize()) {
+		if (arr1->at(i) < arr2->at(j)) {
+			k++;
+			i++;
+			toReturn[k]= arr1->at(k);	
+		} else {
+			k++;
+			j++;
+			toReturn[k] = arr2->at(j);	
+		}
+
+	}
+	while (i < arr1->getSize()) {
+		k++;
+		i++;
+		toReturn[k] = arr1->at(i);
+	}
+
+	while (j < arr2->getSize()) {
+		k++;
+		j++;
+		toReturn[k] = arr2->at(j);
+	}
+	return toReturn;
 }
+
 Array *myArray;
 Array *arr2;
+
 void printElements(int* array) { 
 	for (int i = 0; i < myArray->getSize() + arr2->getSize(); i++) {
 		std::cout<<"Element: "<<i<<" is equal to: "<<array[i]<<"\n";
