@@ -6,7 +6,7 @@ struct Array {
 	int length;
 };
 
-struct Array *arrUnion(struct Array *arr1, struct Array *arr2) {
+struct Array *intersection(struct Array *arr1, struct Array *arr2) {
 	int i,j,k;
 	i = j = k = 0;
 
@@ -37,7 +37,7 @@ int main() {
 
 	struct Array *arr3;
 
-	arr3 = arrUnion(&arr1, &arr2);
+	arr3 = intersection(&arr1, &arr2);
 
 	for (int i = 0; i < arr3->length; i++) {
 		std::cout<<arr3->a[i]<<std::endl;
