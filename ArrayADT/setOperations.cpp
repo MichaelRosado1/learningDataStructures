@@ -136,6 +136,8 @@ struct Array* compliment(struct Array* arr1, struct Array* arr2) {
 	i = j = k = 0;
 	//check if any elements of the intersection are in arr2
 	while (i < arr2->length && j < intersectionArr->length) {
+		//if no elements in the intersection array are found in arr2
+		//add the element at arr2[i] to arr3
 		if (j == intersectionArr->length - 1) {
 			arr3->a[k] = arr2->a[i];
 			k++;
@@ -153,6 +155,15 @@ struct Array* compliment(struct Array* arr1, struct Array* arr2) {
 	arr3->size = 10;
 	return arr3;
 }
+
+//finds the set (A AND B)` -> the compliment of the union of A and B
+struct Array *complimentOfUnion(struct Array *arr1, struct Array *arr2) {
+	struct Array *unionArray = setUnion(arr1, arr2);
+	struct Array *intersectionArray = intersection(arr1, arr2);
+
+	return setDifference(unionArray, intersectionArray);
+}
+
 int main() {
 	struct Array arr1 = {{1,2,3,4,5}, 10, 5};
 	
@@ -160,7 +171,7 @@ int main() {
 
 	struct Array *arr3;
 
-	arr3 = compliment(&arr1, &arr2);
+	arr3 = complimentOfUnion(&arr1, &arr2);
 
 	for (int i = 0; i < arr3->length; i++) {
 		std::cout<<arr3->a[i]<<std::endl;
