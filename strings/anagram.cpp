@@ -2,10 +2,13 @@
 #include <string>
 
 bool isAnagram(std::string word, std::string wordToCheck) {
+
 	if (word.size() != wordToCheck.size()) return false; 
 
 	int indexOfWord, indexOfComparisonWord;
+
 	indexOfWord = 0;
+
 	indexOfComparisonWord = 0;
 
 	//for the length of the word
