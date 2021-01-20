@@ -20,6 +20,21 @@ void arrToll(int a[], int length) {
 	}
 }
 
+struct Node *improvedSerach(struct Node *node, int key) {
+	struct Node *q;
+	while (node != NULL) {
+		if (key == node->data) {
+			q->nextNode = node->nextNode;
+			node->nextNode = first;
+			first = node;
+			return node;	
+		}
+		q = node;
+		node = node->nextNode;
+	}
+	return NULL;
+}
+
 void findNum(int x) {
 	int position = 0;
 	for (struct Node *begin = first; begin != NULL; begin = begin->nextNode) {
@@ -38,5 +53,4 @@ int main() {
 	int x = 10;
 	int a[] = {1,2,19,10,20};
 	arrToll(a, 5);
-	findNum(x);
 }
