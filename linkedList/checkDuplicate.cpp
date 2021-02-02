@@ -20,7 +20,32 @@ void createll(int a[], int n) {
 	}
 }
 
+void RemoveDuplicate(struct Node *node) {
+	struct Node *q = node->nextNode;
+
+	while (q != NULL) {
+		if (node->data != q->data) {
+			node = q;
+			q = q->nextNode;	
+		} else {
+			node->nextNode = q->nextNode;
+			q = node->nextNode;
+		}
+	}
+}
+
+void display(struct Node *node) {
+	while (node != NULL) {
+		std::cout<<node->data<< " -> ";
+		node = node->nextNode;
+	}
+}
 
 int main() {
-	
+	int a[] = {1,2,3,4,4,5};
+	createll(a, 6);	
+	RemoveDuplicate(first);
+
+	display(first);
+
 }
