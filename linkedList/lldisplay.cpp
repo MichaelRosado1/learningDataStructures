@@ -48,10 +48,44 @@ void Display(struct Node *p) {
 	std::cout<<"NULL";
 }
 
+int count(struct Node  *node) {
+	int count = 0;
+	while (node != NULL) {
+		count++;
+		node = node->nextNode;
+	}
+
+	return count;
+}
+
+void insert(struct Node *node, int index, int data) {
+	struct Node *temp;
+	if (index < 0 || index > count(node)) {
+		return;
+	}
+
+	temp = new Node;
+	temp->data = data;
+
+	if (index == 0) {
+		temp->nextNode = first;
+		first = temp;
+	} else {
+		for (int i = 0; i < index - 1; i++) {
+			node = node->nextNode;
+		}
+		temp->nextNode = node->nextNode;
+		node->nextNode = temp;
+	}
+
+}
+
 int main() {
 	int a[] = {3,5,6,7,15};
 	
 	createll(a,5);
+
+	insert(first, 0, 10);
 
 	Display(first);
 
